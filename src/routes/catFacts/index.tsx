@@ -3,13 +3,9 @@ import { FunctionalComponent, h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import style from "./style.css";
 import { trackPromise, usePromiseTracker } from "react-promise-tracker";
-import Facts from "../../components/facts";
+import Facts from "../../components/factsPage";
 
-interface Props {
-  user: string;
-}
-
-const Messages: FunctionalComponent<Props> = (props: Props) => {
+const CatFacts: FunctionalComponent = () => {
   const area = "facts";
   const apiUrl = "https://cat-fact.herokuapp.com/facts";
   const { promiseInProgress } = usePromiseTracker({ area });
@@ -24,13 +20,9 @@ const Messages: FunctionalComponent<Props> = (props: Props) => {
 
   return (
     <div class={style.facts}>
-      {promiseInProgress ? (
-        <div>Подождите, данные загружаются!</div>
-      ) : (
-        <Facts data={facts} />
-      )}
+      {promiseInProgress ? <div>Loading...</div> : <Facts data={facts} />}
     </div>
   );
 };
 
-export default Messages;
+export default CatFacts;
