@@ -13,7 +13,6 @@ const CatFacts: FunctionalComponent = () => {
 
   useEffect(() => {
     trackPromise(axios.get(apiUrl), area).then(({ data }) => {
-      console.log("data", data);
       setFacts(data);
     });
   }, []);
